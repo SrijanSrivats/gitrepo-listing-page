@@ -3,31 +3,26 @@ document.addEventListener("DOMContentLoaded", function () {
     var searchBtn = document.getElementById("searchBtn");
 
     searchBtn.addEventListener("click", function () {
-        // Get values from input fields
         const currUsername = document.getElementById("username").value;
         if(currUsername !== username) {
             username = currUsername;
 
             document.getElementById("loader").innerHTML = "<p>Loading...</p>";
-        // Validate inputs
             if (!currUsername) {
                 alert("Please enter a username.");
                 return;
             }
 
-            // Clear previous results
             document.getElementById("repositories").innerHTML = "";
             // Show loader
 
-            // Make API call to fetch repositories
             fetchRepositories(currUsername, 1);
         }
     });
 });
 
 function fetchRepositories(username, page = 1) {
-    // Make Fetch API call to GitHub API with pagination parameters
-    var perPage = 10; // You can adjust the number of repositories per page
+    var perPage = 10;
     var apiUrl = `https://api.github.com/users/${username}/repos?per_page=${perPage}&page=${page}`;
 
 
@@ -39,18 +34,15 @@ function fetchRepositories(username, page = 1) {
             return response.json();
         })
         .then(data => {
-            // Render the repositories with the retrieved data
             renderRepositories(data, username, page);
         })
         .catch(error => {
-            // Handle errors, e.g., display an error message
             document.getElementById("loader").innerHTML = "<p>Error fetching repositories. Please try again.</p>";
             console.error('Error:', error);
         });
 }
 
 function renderRepositories(repositories,username,page) {
-    // Hide loader
     document.getElementById("loader").innerHTML = "";
     var ownerDisplay = document.getElementById("ownerInfo")
     ownerDisplay.className = "d-flex flex-row"
@@ -68,21 +60,15 @@ function renderRepositories(repositories,username,page) {
     
 
 
-    // Display repositories
     var repositoriesContainer = document.getElementById("repositories");
     repositoriesContainer.innerHTML=""
     repositoriesContainer.className = "d-flex"
 
     repositories.forEach(function (repo , index) {
-        // if (index===0 && page===1){
-        //     return 
-        // }
-        // Create a card for each repository
+
         var card = document.createElement("div");
         card.className = "card mt-3 repo";
 
-
-        // Add display pic and repository name
         var cardBody = document.createElement("div");
         cardBody.className = "card-body";
 
@@ -107,7 +93,7 @@ function renderRepositories(repositories,username,page) {
 
         repositoriesContainer.appendChild(card);
     });
-    var totalPages = 10; // Adjust perPage as needed
+    var totalPages = 10; 
 
     renderPagination(totalPages, username, page);
 
@@ -126,7 +112,6 @@ function renderPagination(totalPages, username, currentPage) {
         
         pageButton.textContent = i;
         pageButton.addEventListener("click", function () {
-            // Handle pagination click
             fetchRepositories(username, i);
         });
 
