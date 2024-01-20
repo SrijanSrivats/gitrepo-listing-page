@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="base.css">
+    <title>Github Repositories</title>
+</head>
+<body>
+    <div class="mx-5 mt-5 h-100 ">
+        <h1 class="text-center">Github Repositories</h1>
+
+        <div class="form-group mt-3">
+            <label for="username">Enter Github Username:</label>
+            <input type="text" id="username" class="form-control" placeholder="Enter username">
+        </div>
+
+        <div class="form-group mt-3">
+            <button id="searchBtn" class="btn btn-primary">Search Repositories</button>
+        </div>
+
+        <div id="loader" class="mt-5 text-center">
+        </div>
+        <div id="ownerInfo" class="mt-5 text-center">
+
+        </div>
+
+        <ul id="repositories" class="list-group mt-3">
+        </ul>
+
+        <div id="pagination" class="mt-3">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="base.js"></script>
+</body>
+</html>
